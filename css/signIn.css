@@ -1,0 +1,31 @@
+.signIn-div{
+    width: 50%;
+    margin: 6.25% 25% 12.5% 25%;
+    border-style: solid;
+    justify-content: center;
+}
+
+.signIn-div form{
+    margin:0 25% 0 25%;
+    width: 50%;
+}
+
+.signIn-div form input ,button{
+    width: 100%;
+    padding: 10px 0 10px 0;
+    margin: 10px 0 10px 0;
+}
+
+.signIn-div button:hover{
+    background-color: rgb(250, 167, 12);
+    border-color: black;
+}
+
+.signIn-div label{
+    margin: 10px 0 10px 0;
+}
+
+.signIn-div a{
+    margin: 0 12.5% 0 12.5%;
+    text-decoration: none;
+}
