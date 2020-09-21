@@ -1,7 +1,11 @@
+body{
+    background-image: url("../resources/signUp_background.jpg");
+    background-size: 100%;
+}
+
 .signIn-div{
     width: 50%;
     margin: 6.25% 25% 12.5% 25%;
-    border-style: solid;
     justify-content: center;
 }
 
@@ -16,8 +20,14 @@
     margin: 10px 0 10px 0;
 }
 
+.signIn-div input,button{
+    background:transparent;
+    text-decoration: solid;
+    border-color: black;
+    outline: none;
+}
+
 .signIn-div button:hover{
-    background-color: rgb(250, 167, 12);
     border-color: black;
 }
 
@@ -28,4 +38,5 @@
 .signIn-div a{
     margin: 0 12.5% 0 12.5%;
     text-decoration: none;
+    color:black;
 }

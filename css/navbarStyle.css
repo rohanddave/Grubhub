@@ -5,13 +5,15 @@
 
 .nav-bar-div{
     display: inline-block;
-    /*display: none;*/
     align-content: stretch;
 }
 
-.left-align-list-item img{
-    margin-top: 10px;
+.left-align-list-item a{
     margin-left:20px;
+    font-family: "Pacifico";
+    text-decoration: none;
+    font-size: xx-large;
+    color:black;
 }
 
 .nav-bar-list{
@@ -20,11 +22,10 @@
 
 .nav-bar-list li{
     display: inline-block;
-    /* display: none; */
 }
 
 .right-align-list-item{
-    margin-top: 28px;
+    margin-top: 20px;
     margin-right: 25px;
     float: right;
 }
@@ -39,4 +40,5 @@
 
 .right-align-list-item a:hover{
     color:orange;
+    transition: 0.3s;
 }

@@ -1,7 +1,12 @@
+body{
+    background-image: url("../resources/signUp_background.jpg");
+    background-size: 100%;
+
+}
+
 .signIn-div{
     width: 50%;
-    margin: 1% 25% 6.25% 25%;
-    border-style: solid;
+    margin: 1% 25% 6.25% 50%;
     justify-content: center;
 }
 
@@ -16,8 +21,27 @@
     margin: 10px 0 10px 0;
 }
 
+.signIn-div input,button{
+    background:transparent;
+    text-decoration: solid;
+    border-color: black;
+    outline: none;
+}
+
 .signIn-div button:hover{
-    background-color: rgb(250, 167, 12);
+    border-color: black;
+}
+
+.signIn-div input{
+    background:transparent;
+    outline: none;
+}
+
+.signIn-div button{
+    background:transparent;    
+}
+
+.signIn-div button:hover{
     border-color: black;
 }
 
@@ -28,4 +52,5 @@
 .signIn-div a{
     margin: 0 25% 0 25%;
     text-decoration: none;
+    color:black;
 }

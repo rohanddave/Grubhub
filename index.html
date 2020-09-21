@@ -3,15 +3,72 @@
     <head>
         <link rel="stylesheet" href="css/navbarStyle.css">
         <link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+        <script src="js/main.js"></script>
         <title>Mini Project</title>
+        <style>
+            body{
+                background-image: url("resources/home.jpg");
+                height: 99vh;
+                background-size: cover;
+                background-position: top; 
+            }   
+            
+            .input-div{
+                margin-top: 150px;
+                margin-left: 15%;
+            }
+
+            .input-div ul{
+                list-style: none;
+            }
+
+            .input-div ul li{
+                padding: 10px;
+            }
+            
+            .button {
+                margin-left: 20px;
+                background-color:orange; /* Green */
+                border: none;
+                color: white;
+                padding: 8px 32px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                border-radius: 5px;
+                outline: none;
+            }
+
+            .button:hover{
+                color:black;
+                box-shadow: 0 5px #666;
+                transition: 0.1s;
+            }
+
+            .button:active{     
+                transform: translateY(2.5px);       
+            }
+
+            #find-food-input{
+                width: 20%;
+                background:transparent;
+                outline:black;
+                padding: 5px;
+                border-radius: 5px;
+                border-style: black solid;
+                color:black;
+            }
+        </style>
     </head>
 
-    <body>
+    <body onload="onLoad()">
         <!--NavBar Begining-->
         <div clas="nav-bar-div">
             <ul class="nav-bar-list">
                 <li class="left-align-list-item">
-                    <a href="index.html"><img src="resources/Logo.jpg"></a>
+                    <a href="index.html">Grubhub</a>
                 </li>
 
                 <li class="right-align-list-item">
@@ -23,5 +80,22 @@
             </ul>
         </div>
         <!--NavBar End-->
+
+        <div class="parallax">
+            <div class="input-div">
+                <ul>
+                    <li>
+                        <label id="message"></label>
+                        <br>
+                        <label>Order food from favorite restaurants near you.</label>
+                    </li>
+
+                    <li>
+                        <input id="find-food-input" text="text" placeholder="Enter City">
+                        <button class="button" onclick="find()">Find Food</button>
+                    </li>
+                </ul>                
+            </div>
+        </div>
     </body>
 </html>
