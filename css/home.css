@@ -1,0 +1,41 @@
+.item-section{
+    display: inline-flex;
+}
+
+.item{
+    margin: 10px;
+    padding: 10px;
+    width:  25%;
+    border-style: solid;
+    border-color: white;
+}
+
+.item:hover{
+    border-color: gray;
+    transition: 0.15s;
+}
+
+.item img{
+    width: 100%;
+}
+
+.item h3{
+    width: 100%;
+}
+
+.item p{
+    color:gray;
+    
+}
+
+.item ul{
+    width: 100%;
+    list-style: none;
+    margin-top:5%;
+}
+
+.item ul li{
+    display: inline-block;
+    margin-right: 8%;
+    color:gray;
+}
