@@ -25,7 +25,6 @@
 
 .item p{
     color:gray;
-    
 }
 
 .item ul{
@@ -39,3 +38,38 @@
     margin-right: 8%;
     color:gray;
 }
+
+.item ul li button{
+    background-color: transparent;
+    border: none;
+    border-color: gray;
+    color: gray;
+    margin-top: 1%;
+    margin-left:30px;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    outline:none;
+}
+
+.item ul li input{
+    width: 50px;
+    margin-left: 5%;
+}
+
+.item div{
+    margin: 0;
+    padding: 0;
+}
+
+.item ul li button:hover{
+    color:  black;
+    transition: 0.2s;
+}
+
+  .item div button:hover{
+      color:black;
+      transition: 0.2s;
+  }
