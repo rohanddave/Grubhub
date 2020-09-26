@@ -19,7 +19,7 @@ session_start();
             }   
             
             .input-div{
-                margin-top: 90px;
+                margin-top: 355px;
                 margin-left: 2%;
             }
 
@@ -66,33 +66,27 @@ session_start();
             }
 
             #label-div{
+                position: absolute;
                 height: 35px;
-                overflow:show;
-                font-weight:bold;
                 font-size: 30px;
-                transform: translate(-50%,-50%);
-                /*animation:rotate 5s infinite;*/
+                font-weight:bold;
+                display: inline-block;
+                overflow:hidden;
+                margin-top:320px;
+                margin-left:25px;
+            }
+
+            #label-div span{
+                animation: rotate 10s ease infinite;
+                position: relative;
             }
 
             @keyframes rotate{
-                0%{
-                    transform:translateY(0px);
-                }
-                20%{
-                    transform:translateY(-40px);
-                }
-                40%{
-                    transform:translateY(-80px);
-                }
-                60%{
-                    transform: translateY(-120px);
-                }
-                80%{
-                    transform:translateY(-160px);
-                }
-                100%{
-                    transform: translateY(0px);
-                }
+                0%{ top: 0px }
+                25%{ top: -35px }
+                50%{ top: -70px}
+                75%{ top: -105px }
+                100%{ top: 0px}
             }
         </style>
     </head>
@@ -120,15 +114,14 @@ session_start();
             </ul>
         </div>
         <!--NavBar End-->
+        
 
+        <div id="label-div">
+                    <span>Game Night?<br>Unexpected Guests?<br>Late Night At Work?<br>Cooking Gone Wrong?<span>
+        </div>
         <div class="input-div">
             <ul>
-                <li>
-                    <div id="label-div">
-                        <span>Game Night?<br>Unexpected Guests?<br>Late Night At Work?<br>Cooking Gone Wrong?<span>
-                    </div>
-                    <label>Order food from favorite restaurants near you.</label>
-                </li>
+                <li><label style="margin-top:200px;">Order food from favorite restaurants near you.</label></li>
 
                 <li>
                     <input id="find-food-input" text="text" placeholder="Enter City">

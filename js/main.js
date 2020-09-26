@@ -53,26 +53,3 @@ function getCity(coordinates) {
         } 
     } 
 }  
-
-function addToCart(){
-    var parentDiv = (document.getElementsByClassName("addToCartBtn")[0].parentElement.parentElement.parentElement);
-    cart.unshift(parentDiv);
-    console.log(cart);
-}
-
-function cartOnLoad(){
-    console.log("method called");
-    var number_of_items = cart.length;
-    var number_of_sections = Math.ceil(number_of_items/4);
-    console.log(number_of_sections);
-    for(var i =0; i < cart.length;i++){
-        if(i%section_size == 0){
-            section = document.createElement("section");
-            section.className = "item-section";
-        }
-        section.appendChild(cart[i]);
-    }
-}
-
-
-document.getElementByTa
