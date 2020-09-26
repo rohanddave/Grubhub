@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -15,14 +19,20 @@
         <div clas="nav-bar-div">
             <ul class="nav-bar-list">
                 <li class="left-align-list-item">
-                    <a href="../index.html">Grubhub</a>
+                    <a href="../index.php">Grubhub</a>
                 </li>
 
                 <li class="right-align-list-item">
                     <a href="#">About</a>
-                    <a href="features.html">Features</a>
-                    <a href="cart.html">Cart</a>
-                    <a href="signIn.html">Sign In</a>
+                    <a href="features.php">Features</a>
+                    <a href="cart.php">Cart</a>
+                    <a id="variable-navbar-btn" href="signInPage.php">Sign In</a>
+                    <?php
+                    if(isset($_SESSION['user_email'])){
+                        $name = $_SESSION['fname'];
+                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name, Log Out?';document.getElementById('variable-navbar-btn').href='../php/logout.php';</script>";
+                        }
+                    ?>
                 </li>
             </ul>
         </div>

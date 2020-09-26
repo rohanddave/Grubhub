@@ -1,19 +1,22 @@
 .div1{
     width:75%;
     margin-left: 12.5%;
+    text-align: center;
 }
 
 .div1 h2{
     width: 100%;
-    margin-left: 12.5%;
     margin-top: 5%;
+    font-family:'Amethysta';
 }
 
 .div1 p{
-    margin-left: 5%;
+    margin-left: 2.5%;
     margin-top: 1%;
+    font-family:'Amethysta';
 }
 
 .section1 table{
     margin:2%;
+    font-family:'Amethysta';
 }

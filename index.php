@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,7 +28,7 @@
             }
 
             .input-div ul li{
-                padding: 10px;
+                /*padding: 10px;*/
             }
             
             .button {
@@ -60,42 +64,77 @@
                 border-style: black solid;
                 color:black;
             }
+
+            #label-div{
+                height: 35px;
+                overflow:show;
+                font-weight:bold;
+                font-size: 30px;
+                transform: translate(-50%,-50%);
+                /*animation:rotate 5s infinite;*/
+            }
+
+            @keyframes rotate{
+                0%{
+                    transform:translateY(0px);
+                }
+                20%{
+                    transform:translateY(-40px);
+                }
+                40%{
+                    transform:translateY(-80px);
+                }
+                60%{
+                    transform: translateY(-120px);
+                }
+                80%{
+                    transform:translateY(-160px);
+                }
+                100%{
+                    transform: translateY(0px);
+                }
+            }
         </style>
     </head>
 
-    <body onload="onLoad()">
+    <body>
         <!--NavBar Begining-->
         <div clas="nav-bar-div">
             <ul class="nav-bar-list">
                 <li class="left-align-list-item">
-                    <a href="index.html">Grubhub</a>
+                    <a href="index.php">Grubhub</a>
                 </li>
 
                 <li class="right-align-list-item">
                     <a href="#">About</a>
-                    <a href="../html/features.html">Features</a>
-                    <a href="html/cart.html">Cart</a>
-                    <a href="html/signIn.html">Sign In</a>
+                    <a href="html/features.php">Features</a>
+                    <a href="html/cart.php">Cart</a>
+                    <a id="variable-navbar-btn" href="html/signInPage.php">Sign In</a>
+                    <?php
+                    if(isset($_SESSION['user_email'])){
+                        $name = $_SESSION['fname'];
+                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name, Log Out?';document.getElementById('variable-navbar-btn').href='php/logout.php';</script>";
+                        }
+                    ?>
                 </li>
             </ul>
         </div>
         <!--NavBar End-->
 
-        <div class="parallax">
-            <div class="input-div">
-                <ul>
-                    <li>
-                        <label id="message"></label>
-                        <br>
-                        <label>Order food from favorite restaurants near you.</label>
-                    </li>
+        <div class="input-div">
+            <ul>
+                <li>
+                    <div id="label-div">
+                        <span>Game Night?<br>Unexpected Guests?<br>Late Night At Work?<br>Cooking Gone Wrong?<span>
+                    </div>
+                    <label>Order food from favorite restaurants near you.</label>
+                </li>
 
-                    <li>
-                        <input id="find-food-input" text="text" placeholder="Enter City">
-                        <button class="button" onclick="find()">Find Food</button>
-                    </li>
-                </ul>                
-            </div>
+                <li>
+                    <input id="find-food-input" text="text" placeholder="Enter City">
+                    <button class="button" onclick="find()">Find Food</button>
+                </li>
+            </ul>                
         </div>
     </body>
 </html>

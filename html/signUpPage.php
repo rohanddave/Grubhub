@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,39 +16,39 @@
        <div clas="nav-bar-div">
         <ul class="nav-bar-list">
             <li class="left-align-list-item">
-                <a href="../index.html">Grubhub</a>
+                <a href="../index.php">Grubhub</a>
             </li>
 
             <li class="right-align-list-item">
                 <a href="#">About</a>
-                <a href="features.html">Features</a>
-                <a href="cart.html">Cart</a>
-                <a href="signIn.html">Sign In</a>
+                <a href="features.php">Features</a>
+                <a href="cart.php">Cart</a>
+                <a href="signInPage.php">Sign In</a>
             </li>
         </ul>
     </div>
     <!--NavBar End-->
 
         <div class="signIn-div">
-            <form>
+            <form method="post" action="../php/signUp.php">                <!-- ../../../../../../xampp/htdocs/signUp.php-->
                 <label><b>First Name</b></label>
-                <input type="text" required>
+                <input type="text" name="firstName" required>
 
                 <label><b>Last Name</b></label>
-                <input type="text" required>
+                <input type="text" name="lastName" required>
 
                 <label><b>Email Address</b></label>
-                <input type="email" required>
+                <input type="email"name="user_email"  required>
 
                 <label><b>Password</b></label>
-                <input type="password" required>
+                <input type="password" name="pass" required>
 
                 <label><b>Confirm Password</b></label>
                 <input type="password" required>
                 
-                <button type="submit"><b>Sign Up</b></button>
+                <button type="submit" name="signUp-submit"><b>Sign Up</b></button>
 
-                <a href="signIn.html"><b><em>Already A Memeber?</em></b></a>
+                <a href="signInPage.php"><b><em>Already A Memeber?</em></b></a>
             </form>
         </div>
     </body>

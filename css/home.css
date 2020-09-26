@@ -12,7 +12,8 @@
 
 .item:hover{
     border-color: gray;
-    transition: 0.15s;
+    box-shadow: rgb(197, 197, 197) 1px 1px 1px 1px;
+    transition: 0.5s;
 }
 
 .item img{

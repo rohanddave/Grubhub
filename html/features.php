@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,6 +9,7 @@
         <link rel="stylesheet" href="../css/features.css">
         <link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+        <link href='https://fonts.googleapis.com/css?family=Amethysta' rel='stylesheet'>
         <title>Feature</title>
     </head>
 
@@ -13,22 +18,28 @@
         <div clas="nav-bar-div">
             <ul class="nav-bar-list">
                 <li class="left-align-list-item">
-                    <a href="../index.html">Grubhub</a>
+                    <a href="../index.php">Grubhub</a>
                 </li>
 
                 <li class="right-align-list-item">
                     <a href="#">About</a>
-                    <a href="features.html">Features</a>
-                    <a href="cart.html">Cart</a>
-                    <a href="signIn.html">Sign In</a>
+                    <a href="features.php">Features</a>
+                    <a href="cart.php">Cart</a>
+                    <a id="variable-navbar-btn" href="signInPage.php">Sign In</a>
+                    <?php
+                    if(isset($_SESSION['user_email'])){
+                        $name = $_SESSION['fname'];
+                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name, Log Out?';document.getElementById('variable-navbar-btn').href='../php/logout.php';</script>";
+                        }
+                    ?>
                 </li>
             </ul>
         </div>
         <!--NavBar End-->
 
         <div class="div1">
-            <h2 style= "font-size: xx-large;">Main Features of Grubhub - Food Ordering Software</h2>
-            <p style="font-size: medium;"><em>Grubhub is the only solution which is built as a food ordering portal or marketplace, along with 
+            <h2 style= "font-size: xx-large; ">Main Features of Grubhub - Food Ordering Software</h2>
+            <p style="font-size: small;"><em>Grubhub is the only solution which is built as a food ordering portal or marketplace, along with 
                 white label food ordering system for restaurant owners. We believe if we give best solution to
                 hospitality business owners, they will be able to take control of their own business.</em>
             </p>
@@ -49,7 +60,7 @@
                         </td>
 
                         <td>
-                            <img src="../resources/delivery.jpg" style="height: 50vh; border-radius: 5px;box-shadow: gray 2px 2px 2px 2px;">                            
+                            <img src="../resources/delivery.jpg" style="height: 65vh; border-radius: 5px;box-shadow: gray 2px 2px 2px 2px;">                            
                         </td>
                     </tr>
                 </table>

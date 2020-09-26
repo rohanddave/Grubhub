@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,27 +17,28 @@
         <div clas="nav-bar-div">
             <ul class="nav-bar-list">
                 <li class="left-align-list-item">
-                    <a href="../index.html">Grubhub</a>
+                    <a href="../index.php">Grubhub</a>
                 </li>
 
                 <li class="right-align-list-item">
                     <a href="#">About</a>
-                    <a href="features.html">Features</a>
-                    <a href="cart.html">Cart</a>
-                    <a href="signIn.html">Sign In</a>
+                    <a href="features.php">Features</a>
+                    <a href="cart.php">Cart</a>
+                    <a href="signIn.php">Sign In</a>
+                    
                 </li>
             </ul>
         </div>
         <!--NavBar End-->
 
         <div class="signIn-div">
-            <form>
+            <form method="post" action="../php/signIn.php">
                 <label><b>Email Address</b></label>
-                <input type="email" required>
+                <input type="email" name="user_email" required>
                 <label><b>Password</b></label>
-                <input type="password" required>
-                <button type="submit"><b>Login</b></button>
-                <a href="signUp.html"><b><em>Not a member? Sign Up Now</em></b></a>
+                <input type="password" name="user_pass" required>
+                <button type="submit" name="signIn-submit"><b>Login</b></button>
+                <a href="signUpPage.php"><b><em>Not a member? Sign Up Now</em></b></a>
             </form>
         </div>
     </body>
