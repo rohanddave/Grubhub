@@ -73,3 +73,6 @@ function cartOnLoad(){
         section.appendChild(cart[i]);
     }
 }
+
+
+document.getElementByTa

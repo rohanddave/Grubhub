@@ -38,145 +38,53 @@ session_start();
         </div>
         <!--NavBar End-->
 
-        <section class="item-section">
-        <!--Item Begining-->
-        <div class="item">
-            <img src="../resources/pizza.jpg">
-            <h3>Name of place</h3>
-            <p>Cuisine</p>
-            <ul>
-                <li style="margin-left: 0;">Rating</li>
-                <li>Time to deliver</li>
-                <li id="price">Price</li>
-            </ul>
-            <ul>
-                <li><button class="addToCartBtn" onclick="addToCart()">Add To Cart</button></li>
-                <li><input style="margin: 0; padding: 0;" type="number"></li>
-            </ul>
-            
-        </div>
-        <!--Item End-->
+        <?php
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbName = "ip_project";
+        
+        $conn = mysqli_connect($servername,$username,$password,$dbName) or die("Unable to connect!");
 
-        <!--Item Begining-->
-        <div class="item">
-            <img src="../resources/pizza.jpg">
-            <h3>Name of place</h3>
-            <p>Cuisine</p>
-            <ul>
-                <li style="margin-left: 0;">Rating</li>
-                <li>Time to deliver</li>
-                <li>Price</li>
-            </ul>
-            <ul>
-                <li><button onclick="addToCart()">Add To Cart</button></li>
-                <li><input style="margin: 0; padding: 0;" type="number"></li>
-            </ul>
-        </div>
-        <!--Item End-->
+        $result = mysqli_query($conn,"select * from items;");
+        $arr = array();
+        while($row = mysqli_fetch_assoc($result)){
+            $arr[]=$row;
+        }
 
-        <!--Item Begining-->
-        <div class="item">
-            <img src="../resources/pizza.jpg">
-            <h3>Name of place</h3>
-            <p>Cuisine</p>
-            <ul>
-                <li style="margin-left: 0;">Rating</li>
-                <li>Time to deliver</li>
-                <li>Price</li>
-            </ul>
-            <ul>
-                <li><button onclick="addToCart()">Add To Cart</button></li>
-                <li><input style="margin: 0; padding: 0;" type="number"></li>
-            </ul>
-        </div>
-        <!--Item End-->
-
-        <!--Item Begining-->
-        <div class="item">
-            <img src="../resources/pizza.jpg">
-            <h3>Name of place</h3>
-            <p>Cuisine</p>
-            <ul>
-                <li style="margin-left: 0;">Rating</li>
-                <li>Time to deliver</li>
-                <li>Price</li>
-            </ul>
-            <ul>
-                <li><button onclick="addToCart()">Add To Cart</button></li>
-                <li><input style="margin: 0; padding: 0;" type="number"></li>
-            </ul>
-        </div>
-        <!--Item End-->
-    </section>
-
-    <section class="item-section">
-        <!--Item Begining-->
-        <div class="item">
-            <img src="../resources/pizza.jpg">
-            <h3>Name of place</h3>
-            <p>Cuisine</p>
-            <ul>
-                <li style="margin-left: 0;">Rating</li>
-                <li>Time to deliver</li>
-                <li>Price</li>
-            </ul>
-            <ul>
-                <li><button onclick="addToCart()">Add To Cart</button></li>
-                <li><input style="margin: 0; padding: 0;" type="number"></li>
-            </ul>
-        </div>
-        <!--Item End-->
-
-        <!--Item Begining-->
-        <div class="item">
-            <img src="../resources/pizza.jpg">
-            <h3>Name of place</h3>
-            <p>Cuisine</p>
-            <ul>
-                <li style="margin-left: 0;">Rating</li>
-                <li>Time to deliver</li>
-                <li>Price</li>
-            </ul>
-            <ul>
-                <li><button onclick="addToCart()">Add To Cart</button></li>
-                <li><input style="margin: 0; padding: 0;" type="number"></li>
-            </ul>
-        </div>
-        <!--Item End-->
-
-        <!--Item Begining-->
-        <div class="item">
-            <img src="../resources/pizza.jpg">
-            <h3>Name of place</h3>
-            <p>Cuisine</p>
-            <ul>
-                <li style="margin-left: 0;">Rating</li>
-                <li>Time to deliver</li>
-                <li>Price</li>
-            </ul>
-            <ul>
-                <li><button onclick="addToCart()">Add To Cart</button></li>
-                <li><input style="margin: 0; padding: 0;" type="number"></li>
-            </ul>
-        </div>
-        <!--Item End-->
-
-        <!--Item Begining-->
-        <div class="item">
-            <img src="../resources/pizza.jpg">
-            <h3>Name of place</h3>
-            <p>Cuisine</p>
-            <ul>
-                <li style="margin-left: 0;">Rating</li>
-                <li>Time to deliver</li>
-                <li>Price</li>
-            </ul>
-            <ul>
-                <li><button onclick="addToCart()">Add To Cart</button></li>
-                <li><input style="margin: 0; padding: 0;" type="number"></li>
-            </ul>
-        </div>
-        <!--Item End-->
-    </section>
+        $number_of_items = sizeof($arr);
+        $number_of_sections = ceil($number_of_items/4);
+        
+        $pointer = 0;
+        
+        for($x = 1; $x <= $number_of_sections; $x++){
+            echo "<section class='item-section'>";
+            for($y = 0; $y < 4 && $pointer < $number_of_items; $y++){
+                $img = $arr[$pointer]['img'];
+                $price = $arr[$pointer]['price'];
+                $time_to_deliver = $arr[$pointer]['time_to_deliver'];
+                $rating = $arr[$pointer]['rating'];
+                $cuisine = $arr[$pointer]['cuisine'];
+                $name = $arr[$pointer]['name'];
+                $pointer++;
+                echo "
+                <div class='item'>
+                <img src=$img>
+                <h3>$name</h3>
+                <p>$cuisine</p>
+                <ul>
+                    <li style='margin-left: 0;'>$rating</li>
+                    <li>$time_to_deliver</li>
+                    <li id='price'>$price</li>
+                </ul>
+                <ul>
+                    <li><button class='addToCartBtn' onclick='addToCart()'>Add To Cart</button></li>
+                    <li><input style='margin: 0; padding: 0;' type='number'></li>
+                </ul>
+            </div>";
+            }
+            echo "</section>";
+        }
+        ?>
     </body>
 </html>

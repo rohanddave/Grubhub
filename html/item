@@ -1,0 +1,70 @@
+<section class="item-section">
+        <!--Item Begining-->
+        <div class="item">
+            <img src="../resources/pizza.jpg">
+            <h3>Name of place</h3>
+            <p>Cuisine</p>
+            <ul>
+                <li style="margin-left: 0;">Rating</li>
+                <li>Time to deliver</li>
+                <li id="price">Price</li>
+            </ul>
+            <ul>
+                <li><button class="addToCartBtn" onclick="addToCart()">Add To Cart</button></li>
+                <li><input style="margin: 0; padding: 0;" type="number"></li>
+            </ul>
+            
+        </div>
+        <!--Item End-->
+
+        <!--Item Begining-->
+        <div class="item">
+            <img src="../resources/pizza.jpg">
+            <h3>Name of place</h3>
+            <p>Cuisine</p>
+            <ul>
+                <li style="margin-left: 0;">Rating</li>
+                <li>Time to deliver</li>
+                <li>Price</li>
+            </ul>
+            <ul>
+                <li><button onclick="addToCart()">Add To Cart</button></li>
+                <li><input style="margin: 0; padding: 0;" type="number"></li>
+            </ul>
+        </div>
+        <!--Item End-->
+
+        <!--Item Begining-->
+        <div class="item">
+            <img src="../resources/pizza.jpg">
+            <h3>Name of place</h3>
+            <p>Cuisine</p>
+            <ul>
+                <li style="margin-left: 0;">Rating</li>
+                <li>Time to deliver</li>
+                <li>Price</li>
+            </ul>
+            <ul>
+                <li><button onclick="addToCart()">Add To Cart</button></li>
+                <li><input style="margin: 0; padding: 0;" type="number"></li>
+            </ul>
+        </div>
+        <!--Item End-->
+
+        <!--Item Begining-->
+        <div class="item">
+            <img src="../resources/pizza.jpg">
+            <h3>Name of place</h3>
+            <p>Cuisine</p>
+            <ul>
+                <li style="margin-left: 0;">Rating</li>
+                <li>Time to deliver</li>
+                <li>Price</li>
+            </ul>
+            <ul>
+                <li><button onclick="addToCart()">Add To Cart</button></li>
+                <li><input style="margin: 0; padding: 0;" type="number"></li>
+            </ul>
+        </div>
+        <!--Item End-->
+    </section>
