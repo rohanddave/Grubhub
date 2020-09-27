@@ -1,5 +1,10 @@
 <?php
 session_start();
+function addItemToCart(){
+    $stmt = $conn->prepare('insert into cart values (?,?,?)');
+    $stmt->bind_param('sss',$_SESSION['user_email'],$name,$cuisine);
+    $stmt->execute() or die('not working');
+}
 ?>
 
 <!DOCTYPE html>
@@ -10,6 +15,13 @@ session_start();
         <link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
         <link rel="stylesheet" href="../css/home.css">
+        
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="../js/main.js"></script>
         <title>Home page</title>
     </head>
@@ -23,10 +35,10 @@ session_start();
                 </li>
 
                 <li class="right-align-list-item">
-                    <a href="#">About</a>
-                    <a href="features.php">Features</a>
-                    <a href="cart.php">Cart</a>
-                    <a id="variable-navbar-btn" href="signInPage.php">Sign In</a>
+                    <a href="#">About   <i class="fa fa-universal-access"></i></a>
+                    <a href="features.php">Features     <i class="fa fa-certificate"></i></i></a>
+                    <a href="cart.php">Cart     <i stlye="margin-left:5px;" class='fas fa-shopping-cart'></i></a>
+                    <a id="variable-navbar-btn" href="signInPage.php">Sign In      <i class="fa fa-user-circle-o"></i></a>
                     <?php
                     if(isset($_SESSION['user_email'])){
                         $name = $_SESSION['fname'];
@@ -69,8 +81,9 @@ session_start();
                 $pointer++;
                 echo "
                 <div class='item'>
+                <form method='post'>
                 <img src=$img>
-                <h3>$name</h3>
+                <h3 id='name-of-item'>$name</h3>
                 <p>$cuisine</p>
                 <ul>
                     <li style='margin-left: 0;'>$rating</li>
@@ -78,13 +91,14 @@ session_start();
                     <li id='price'>$price</li>
                 </ul>
                 <ul>
-                    <li><button class='addToCartBtn' onclick='addToCart()'>Add To Cart</button></li>
-                    <li><input style='margin: 0; padding: 0;' type='number'></li>
+                    <li><input style='margin: 0; padding: 0;' type='number' id='quantity'></li>
+                    <li><button class='addToCartBtn' type='submit'>Add To Cart</button></li>
                 </ul>
+                </form>
             </div>";
             }
             echo "</section>";
         }
-        ?>
+        ?>        
     </body>
 </html>

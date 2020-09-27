@@ -9,6 +9,13 @@ session_start();
         <link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
         <script src="js/main.js"></script>
+
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Mini Project</title>
         <style>
             body{
@@ -100,14 +107,14 @@ session_start();
                 </li>
 
                 <li class="right-align-list-item">
-                    <a href="#">About</a>
-                    <a href="html/features.php">Features</a>
-                    <a href="html/cart.php">Cart</a>
-                    <a id="variable-navbar-btn" href="html/signInPage.php">Sign In</a>
+                    <a href="#">About   <i class="fa fa-universal-access"></i></a>
+                    <a href="html/features.php">Features     <i class="fa fa-certificate"></i></i></a>
+                    <a href="html/cart.php">Cart     <i stlye="margin-left:5px;" class='fas fa-shopping-cart'></i></a>
+                    <a id="variable-navbar-btn" href="html/signInPage.php">Sign In      <i class="fa fa-user-circle-o"></i></a>
                     <?php
                     if(isset($_SESSION['user_email'])){
                         $name = $_SESSION['fname'];
-                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name, Log Out?';document.getElementById('variable-navbar-btn').href='php/logout.php';</script>";
+                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name, Log Out?';document.getElementById('variable-navbar-btn').href='../php/logout.php';</script>";
                         }
                     ?>
                 </li>
