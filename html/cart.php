@@ -17,6 +17,13 @@ session_start();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Cart</title>
+        <style>
+            body{
+                background-image: url("../resources/cart.jpg");
+                background-size: cover;
+                background-position: top;
+            }
+            </style>
     </head>
 
     <body>
@@ -74,7 +81,7 @@ session_start();
         $total = 0;
 
         if($arr){
-            echo "<h1>Cart</h1><hr>";
+            echo "<h1>Cart</h1>";
             foreach($arr as $item){
                 $item_name = $item['item_name'];
                 $item_qty = $item['quantity'];
@@ -82,15 +89,15 @@ session_start();
                 $item_total = $item_qty*$item_price;
                 $total += $item_total;
                 echo "<form method='POST' action='../php/deleteFromCart.php'>
-                <section class = 'item-section'>
+                <section class = 'item-section' style='width:500px';>
                 <div class='img-div'>
-                    <img style='width:100px;height:15vh;'src = '../resources/$item_name.jpg'>
+                    <img style='width:100px;height:15vh;'src = '../resources/$item_name.png'>
                 </div>
                 <div class='content-div'>
                     <h3 style='padding-bottom:1%;'>$item_name (x$item_qty) &nbsp; ₹$item_total ($item_qty x ₹$item_price)</h3>
                     <p style='color:green;padding-bottom:1%;'>Available</p>
                     <p style='padding-bottom:3%;'>Free Delivery</p>
-                    <button type='submit'>Delete</button>
+                    <button style='background:transparent;border:none;'type='submit'>Delete</button>
                     <input type = 'hidden' name = 'item_name' value = '$item_name'/>
                 </div>
                 </section>

@@ -10,7 +10,7 @@ $conn = mysqli_connect($servername,$username,$password,$dbName) or die("Unable t
 $user = $_SESSION['user_email'];
 $name = $_POST['item_name'];
 
-$stmt = $conn->prepare("delete from cart where email like ? and item_name like ?");
+$stmt = $conn->prepare("delete from cart where email like ? and item_name like ? limit 1");
 $stmt->bind_param("ss",$user,$name);
 $stmt->execute() or die("FUCN TOU");
 $stmt->close();

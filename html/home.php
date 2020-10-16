@@ -14,6 +14,7 @@ function addItemToCart(){
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/navbarStyle.css">
         <link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
@@ -89,9 +90,9 @@ function addItemToCart(){
                 <h3 id='name-of-item'>$name</h3>
                 <p>$cuisine</p>
                 <ul>
-                    <li style='margin-left: 0;'>$rating    <span class='fa fa-star checked'></span></li>
-                    <li>$time_to_deliver</li>
-                    <li id='price'>₹$price</li>
+                    <li style='text-align:center;margin-left: 0;'><div style='background: #08E25F;color:white;height:25px;width:40px;padding-top:6px;'>$rating    <span style='color:white;'class='fa fa-star checked'></span></div></li>
+                    <li><div><i style='margin-right:10px;font-size:8px;'class='fa fa-circle'></i>$time_to_deliver</div></li>
+                    <li id='price'><div><i style='margin-right:10px;font-size:8px;'class='fa fa-circle'></i>₹$price</div></li>
                 </ul>
                 <ul>
                     <li style='margin-left:30%'>
