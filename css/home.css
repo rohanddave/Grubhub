@@ -75,3 +75,13 @@
       color:black;
       transition: 0.2s;
   }
+#addToCartBtn{
+    width:150px;
+    height:25px;
+    margin-left:40%;
+    margin-top:100px;
+}
+#addToCartBtn:hover{
+    color:orange;
+    transition:0.2s;
+}

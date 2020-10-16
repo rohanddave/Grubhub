@@ -9,6 +9,7 @@ session_start();
         <link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
         <script src="../js/main.js"></script>
+        <link rel="stylesheet" href="../css/cart.css">
 
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,7 +19,7 @@ session_start();
         <title>Cart</title>
     </head>
 
-    <body onload="cartOnLoad()">
+    <body>
         <!--NavBar Begining-->
         <div clas="nav-bar-div">
             <ul class="nav-bar-list">
@@ -41,5 +42,73 @@ session_start();
             </ul>
         </div>
         <!--NavBar End-->
+
+        <?php
+
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbName = "ip_project";
+
+        $conn = mysqli_connect($servername,$username,$password,$dbName) or die("Unable to connect!");
+        
+        $email = $_SESSION['user_email'];
+        $result = mysqli_query($conn,"select item_name,quantity from cart where email like '$email';");
+        $arr = array();
+        while($row = mysqli_fetch_assoc($result)){
+        $arr[]=$row;
+        }
+
+        $query = mysqli_query($conn,"select name,price from items");
+        $pricings = array();
+        while($row = mysqli_fetch_assoc($query)){
+        $pricings[]=$row;
+        }
+
+        $final_pricings = array(); //dictionary of prices
+
+        foreach($pricings as $pricing){
+            $final_pricings[$pricing['name']] = $pricing['price'];
+        }
+
+        $total = 0;
+
+        if($arr){
+            echo "<h1>Cart</h1><hr>";
+            foreach($arr as $item){
+                $item_name = $item['item_name'];
+                $item_qty = $item['quantity'];
+                $item_price = $final_pricings[$item_name];
+                $item_total = $item_qty*$item_price;
+                $total += $item_total;
+                echo "<form method='POST' action='../php/deleteFromCart.php'>
+                <section class = 'item-section'>
+                <div class='img-div'>
+                    <img style='width:100px;height:15vh;'src = '../resources/$item_name.jpg'>
+                </div>
+                <div class='content-div'>
+                    <h3 style='padding-bottom:1%;'>$item_name (x$item_qty) &nbsp; ₹$item_total ($item_qty x ₹$item_price)</h3>
+                    <p style='color:green;padding-bottom:1%;'>Available</p>
+                    <p style='padding-bottom:3%;'>Free Delivery</p>
+                    <button type='submit'>Delete</button>
+                    <input type = 'hidden' name = 'item_name' value = '$item_name'/>
+                </div>
+                </section>
+                </form>
+                ";
+            }
+        }
+        else{
+            echo "
+            <div>
+            <h1 style='margin-left:45%; margin-top:15%;'>Empty Cart</h1>
+            </div>
+
+            ";
+        }
+        
+        
+        $conn->close();
+        ?>
     </body>
 </html>

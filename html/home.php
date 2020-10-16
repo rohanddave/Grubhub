@@ -11,6 +11,9 @@ function addItemToCart(){
 
 <html>
     <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../css/navbarStyle.css">
         <link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
@@ -69,6 +72,7 @@ function addItemToCart(){
         
         $pointer = 0;
         
+        echo "<form method='POST' action = '../php/addToCart.php'>";
         for($x = 1; $x <= $number_of_sections; $x++){
             echo "<section class='item-section'>";
             for($y = 0; $y < 4 && $pointer < $number_of_items; $y++){
@@ -80,25 +84,38 @@ function addItemToCart(){
                 $name = $arr[$pointer]['name'];
                 $pointer++;
                 echo "
-                <div class='item'>
-                <form method='post'>
+                <div class='item' id='$name'>
                 <img src=$img>
                 <h3 id='name-of-item'>$name</h3>
                 <p>$cuisine</p>
                 <ul>
-                    <li style='margin-left: 0;'>$rating</li>
+                    <li style='margin-left: 0;'>$rating    <span class='fa fa-star checked'></span></li>
                     <li>$time_to_deliver</li>
-                    <li id='price'>$price</li>
+                    <li id='price'>₹$price</li>
                 </ul>
                 <ul>
-                    <li><input style='margin: 0; padding: 0;' type='number' id='quantity'></li>
-                    <li><button class='addToCartBtn' type='submit'>Add To Cart</button></li>
+                    <li style='margin-left:30%'>
+                    <select name='qty_$name'>
+                                <option value='1'>1</option>
+                                <option value='2'>2</option>
+                                <option value='3'>3</option>
+                                <option value='4'>4</option>
+                                <option value='5'>5</option>
+                                <option value='6'>6</option>
+                                <option value='7'>7</option>
+                                <option value='8'>8</option>
+                                <option value='9'>9</option>
+                                <option value='10'>10</option>
+                    </select>
+                    <input style='margin:0;' type='checkbox' name='items[]' id='items' value='$name'>
+                    </li>
                 </ul>
-                </form>
             </div>";
             }
             echo "</section>";
         }
+        echo "<button id='addToCartBtn' style='background:transparent;border:none;'type = 'submit'>Add Items To Cart</button>";
+        echo "</form>";
         ?>        
     </body>
 </html>
