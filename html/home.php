@@ -30,12 +30,13 @@ function addItemToCart(){
         <title>Home page</title>
     </head>
 
-    <body>
+    <body onload="showLocation()">
         <!--NavBar Begining-->
         <div clas="nav-bar-div">
             <ul class="nav-bar-list">
                 <li class="left-align-list-item">
                     <a href="../index.php">Grubhub</a>
+                    <p id="location">asdas</p>
                 </li>
 
                 <li class="right-align-list-item">
@@ -53,6 +54,7 @@ function addItemToCart(){
             </ul>
         </div>
         <!--NavBar End-->
+
 
         <?php
         $servername = "localhost";
@@ -75,7 +77,7 @@ function addItemToCart(){
         
         echo "<form method='POST' action = '../php/addToCart.php'>";
         for($x = 1; $x <= $number_of_sections; $x++){
-            echo "<section class='item-section'>";
+            echo "<section class='item-section' style='margin-top:25px;margin-bottom:25px;'>";
             for($y = 0; $y < 4 && $pointer < $number_of_items; $y++){
                 $img = $arr[$pointer]['img'];
                 $price = $arr[$pointer]['price'];
@@ -83,12 +85,17 @@ function addItemToCart(){
                 $rating = $arr[$pointer]['rating'];
                 $cuisine = $arr[$pointer]['cuisine'];
                 $name = $arr[$pointer]['name'];
+                $name_without_spaces = str_replace(" ","-",$name);
+                $kind = $arr[$pointer]['kind'];
+                $description = $arr[$pointer]['description'];
                 $pointer++;
                 echo "
                 <div class='item' id='$name'>
                 <img src=$img>
                 <h3 id='name-of-item'>$name</h3>
-                <p>$cuisine</p>
+                <p>$kind, $cuisine</p>
+                <br>
+                <p>$description</p>
                 <ul>
                     <li style='text-align:center;margin-left: 0;'><div style='background: #08E25F;color:white;height:25px;width:40px;padding-top:6px;'>$rating    <span style='color:white;'class='fa fa-star checked'></span></div></li>
                     <li><div><i style='margin-right:10px;font-size:8px;'class='fa fa-circle'></i>$time_to_deliver</div></li>
@@ -96,7 +103,7 @@ function addItemToCart(){
                 </ul>
                 <ul>
                     <li style='margin-left:30%'>
-                    <select name='qty_$name'>
+                    <select name='qty_$name_without_spaces'>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
                                 <option value='3'>3</option>
@@ -108,7 +115,7 @@ function addItemToCart(){
                                 <option value='9'>9</option>
                                 <option value='10'>10</option>
                     </select>
-                    <input style='margin:0;' type='checkbox' name='items[]' id='items' value='$name'>
+                    <input style='margin:0;' type='checkbox' name='items[]' id='items' value='$name_without_spaces'>
                     </li>
                 </ul>
             </div>";

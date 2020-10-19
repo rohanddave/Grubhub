@@ -17,11 +17,13 @@ session_start();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Cart</title>
-        <style>
-            body{
-                background-image: url("../resources/cart.jpg");
-                background-size: cover;
-                background-position: top;
+        <style>            
+            button{
+                color:blue;
+            }
+
+            button:hover{
+                text-decoration:underline;
             }
             </style>
     </head>
@@ -60,16 +62,16 @@ session_start();
         $conn = mysqli_connect($servername,$username,$password,$dbName) or die("Unable to connect!");
         
         $email = $_SESSION['user_email'];
-        $result = mysqli_query($conn,"select item_name,quantity from cart where email like '$email';");
-        $arr = array();
+        $result = mysqli_query($conn,"select item_name,quantity from cart where email like '$email';"); //item name is without space here
+        $arr = array(); //items in cart
         while($row = mysqli_fetch_assoc($result)){
         $arr[]=$row;
         }
 
-        $query = mysqli_query($conn,"select name,price from items");
+        $query = mysqli_query($conn,"select name,price,kind from items"); //name is with space here
         $pricings = array();
         while($row = mysqli_fetch_assoc($query)){
-        $pricings[]=$row;
+        $pricings[]=$row;//pricings of all items
         }
 
         $final_pricings = array(); //dictionary of prices
@@ -78,22 +80,48 @@ session_start();
             $final_pricings[$pricing['name']] = $pricing['price'];
         }
 
-        $total = 0;
+        /*$query = mysqli_query($conn,"select name,kind,img from items"); //name is with space here
+        $kinds = array();
+        while($row = mysqli_fetch_assoc($query)){
+            $kinds[]=$row;//pricings of all items
+        }
 
+        $final_kinds = array(); //dictionary of kinds
+
+        foreach($kinds as $kind){
+            $final_kinds[$kind['name']] = $kind['kind'];
+        }*/
+
+        $query = mysqli_query($conn,"select name,img from items"); //name is with space here
+        $imgs = array();
+        while($row = mysqli_fetch_assoc($query)){
+            $imgs[]=$row;//pricings of all items
+        }
+
+        $final_imgs = array(); //dictionary of kinds
+
+        foreach($imgs as $img){
+            $final_imgs[$img['name']] = $img['img'];
+        }
+
+        $total = 0;
         if($arr){
             echo "<h1>Cart</h1>";
             foreach($arr as $item){
                 $item_name = $item['item_name'];
+                $img_location = $final_imgs[$item_name];
                 $item_qty = $item['quantity'];
                 $item_price = $final_pricings[$item_name];
                 $item_total = $item_qty*$item_price;
+                //$item_kind = $final_kinds[$item_name];
+                //$item_kind = str_replace(" ","_",$item_kind);
                 $total += $item_total;
                 echo "<form method='POST' action='../php/deleteFromCart.php'>
                 <section class = 'item-section' style='width:500px';>
                 <div class='img-div'>
-                    <img style='width:100px;height:15vh;'src = '../resources/$item_name.png'>
+                    <img style='width:100px;height:15vh;'src = '$img_location'>
                 </div>
-                <div class='content-div'>
+                <div style='display:inline-block' class='content-div'>
                     <h3 style='padding-bottom:1%;'>$item_name (x$item_qty) &nbsp; ₹$item_total ($item_qty x ₹$item_price)</h3>
                     <p style='color:green;padding-bottom:1%;'>Available</p>
                     <p style='padding-bottom:3%;'>Free Delivery</p>
@@ -109,6 +137,7 @@ session_start();
             echo "
             <div>
             <h1 style='margin-left:45%; margin-top:15%;'>Empty Cart</h1>
+            <a style='margin-left:49%; margin-top:20%;' href='home.php'>Order Now</a>
             </div>
 
             ";

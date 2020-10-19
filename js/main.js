@@ -24,14 +24,16 @@ function find(){
 }
 
 function showLocation(position){
-    var label = document.getElementById("geoLocation");
-    var cords = position.coords;
-    var lat = cords.lattitude.toString();
-    var lon = cords.longitude.toString();
-    var coordinates = [lat,lon];
-    label.innerHTML = getCity(coordinates);
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition(showPosition);
+    }
 }
 
+function showPosition(position){
+    document.getElementById("location").innerHTML= "Latitude: " + position.coords.latitude +
+    "<br>Longitude: " + position.coords.longitude;
+
+}
 function getCity(coordinates) { 
     var xhr = new XMLHttpRequest(); 
     var lat = coordinates[0]; 

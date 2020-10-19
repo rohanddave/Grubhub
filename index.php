@@ -114,7 +114,7 @@ session_start();
                     <?php
                     if(isset($_SESSION['user_email'])){
                         $name = $_SESSION['fname'];
-                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name, Log Out?';document.getElementById('variable-navbar-btn').href='../php/logout.php';</script>";
+                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name, Log Out?';document.getElementById('variable-navbar-btn').href='php/logout.php';</script>";
                         }
                     ?>
                 </li>
