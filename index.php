@@ -26,7 +26,7 @@ session_start();
             }   
             
             .input-div{
-                margin-top: 355px;
+                margin-top: 250px;
                 margin-left: 2%;
             }
 
@@ -79,7 +79,7 @@ session_start();
                 font-weight:bold;
                 display: inline-block;
                 overflow:hidden;
-                margin-top:320px;
+                margin-top:200px;
                 margin-left:25px;
             }
 
