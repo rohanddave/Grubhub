@@ -117,14 +117,14 @@ session_start();
                 //$item_kind = str_replace(" ","_",$item_kind);
                 $total += $item_total;
                 echo "<form method='POST' action='../php/deleteFromCart.php'>
-                <section class = 'item-section' style='width:500px';>
-                <div class='img-div'>
+                <section class = 'item-section' style='width:90%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); '>
+                <div class='img-div' style='width: 100px; float:left; height:100px;margin:10px'>
                     <img style='width:100px;height:15vh;'src = '$img_location'>
                 </div>
-                <div style='display:inline-block' class='content-div'>
+                <div style='display:inline-block;width: fit; float:left; height:100px;margin:10px'>
                     <h3 style='padding-bottom:1%;'>$item_name (x$item_qty) &nbsp; ₹$item_total ($item_qty x ₹$item_price)</h3>
                     <p style='color:green;padding-bottom:1%;'>Available</p>
-                    <p style='padding-bottom:3%;'>Free Delivery</p>
+                    <p style='padding-bottom:1%;'>Free Delivery</p>
                     <button style='background:transparent;border:none;'type='submit'>Delete</button>
                     <input type = 'hidden' name = 'item_name' value = '$item_name'/>
                 </div>

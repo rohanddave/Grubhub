@@ -3,18 +3,18 @@
 }
 
 .item{
-    margin: 10px;
+    margin: 0px 45px 10px 10px;
     padding: 10px;
     width:  25%;
     border-style: solid;
-    border-color: rgb(197, 197, 197);
-    box-shadow: gray 0.5px 0.5px 0.5px 0.5px;
+    border-color: white;
+    /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);*/
+    /*box-shadow: gray 0.5px 0.5px 0.5px 0.5px;*/
 }
 
 .item:hover{
-    border-color: black;
-    box-shadow: black 1px 1px 1px 1px;
-    transition: 0.5s;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);
+    transition: 0.2s;
 }
 
 .item img{

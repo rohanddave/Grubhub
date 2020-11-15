@@ -21,7 +21,7 @@ session_start();
 
     <body>
         <!--NavBar Begining-->
-        <div clas="nav-bar-div">
+        <div class="nav-bar-div">
             <ul class="nav-bar-list">
                 <li class="left-align-list-item">
                     <a href="../index.php">Grubhub</a>
@@ -43,7 +43,7 @@ session_start();
         </div>
         <!--NavBar End-->
 
-        <div class="div1">
+        <div class="div1" style="margin-top:100px;">
             <h2 style= "font-size: xx-large; ">Main Features of Grubhub - Food Ordering Software</h2>
             <p style="font-size: small;"><em>Grubhub is the only solution which is built as a food ordering portal or marketplace, along with 
                 white label food ordering system for restaurant owners. We believe if we give best solution to
