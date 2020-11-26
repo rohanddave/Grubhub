@@ -101,8 +101,20 @@ session_start();
                                 </form> 
                             </div>";
                         }//inner for 
+                        echo"</section>";
                     }//outer for
                 ?>
+                <div id='address' style='width:45%;margin-left:2.5%;margin-right:2%;float:left;'>
+                    <form method='POST' action='../php/addLocation.php'>
+                        <h3 style='margin-left:2%;margin-top:2%;'><i class='fa fa-home' style='margin-right:2%;'></i>Add New Address</h3>
+                        <input style='margin-left:2%;margin-top:2%;'placeholder='Name' name = "name">
+                        <input style='margin-left:2%;margin-top:2%;'placeholder='Line 1' name = "line1">
+                        <input style='margin-left:2%;margin-top:2%;'placeholder='Line 2' name="line2">
+                        <input style='margin-left:2%;margin-top:2%;'placeholder='Line 3' name="line3">
+                        <button type='submit' style='width:25%;height:5vh;margin-left:37.5%;margin-top:2%;margin-bottom:2%;background-color:green;color:white;border:none;text-decoration:none;'>Add</button>
+                    </form> 
+                </div>
+
             </div>
 
             <div id="sidebar" style='overflow-y:auto;'>
