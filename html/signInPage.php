@@ -27,14 +27,17 @@ session_start();
                 </li>
 
                 <li class="right-align-list-item">
-                    <a href="#">About   <i class="fa fa-universal-access"></i></a>
-                    <a href="features.php">Features     <i class="fa fa-certificate"></i></i></a>
-                    <a href="cart.php">Cart     <i stlye="margin-left:5px;" class='fas fa-shopping-cart'></i></a>
-                    <a id="variable-navbar-btn" href="signInPage.php">Sign In      <i class="fa fa-user-circle-o"></i></a>
+                    <a href="html/aboutus.php">About   <i class="fa fa-universal-access"></i></a>
+                    <a href="html/features.php">Features     <i class="fa fa-certificate"></i></i></a>
+                    <a href="html/cart.php">Cart     <i stlye="margin-left:5px;" class='fas fa-shopping-cart'></i></a>
+                    <a id="variable-navbar-btn" href="html/signInPage.php">Sign In      <i id='fa fa-user-circle-o' class="fa fa-user-circle-o"></i></a>
+                    
+                    <a id="logout-btn" style="display:none;">Logout</a>
                     <?php
                     if(isset($_SESSION['user_email'])){
                         $name = $_SESSION['fname'];
-                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name, Log Out?';document.getElementById('variable-navbar-btn').href='../php/logout.php';</script>";
+                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name';document.getElementById('variable-navbar-btn').href='#';</script>";
+                        echo "<script>document.getElementById('logout-btn').style.display='inline-block';document.getElementById('logout-btn').innerHTML = 'Logout';document.getElementById('logout-btn').href='php/logout.php';</script>";
                         }
                     ?>
                 </li>

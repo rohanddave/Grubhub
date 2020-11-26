@@ -2,6 +2,7 @@
 session_start();
 ?>
 
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +17,7 @@ session_start();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <title>Feature</title>
+        <title>About Us</title>
     </head>
 
     <body>
@@ -31,7 +32,7 @@ session_start();
                     <a href="aboutus.php">About   <i class="fa fa-universal-access"></i></a>
                     <a href="features.php">Features     <i class="fa fa-certificate"></i></i></a>
                     <a href="cart.php">Cart     <i stlye="margin-left:5px;" class='fas fa-shopping-cart'></i></a>
-                    <a id="variable-navbar-btn" href="html/signInPage.php">Sign In      <i class="fa fa-user-circle-o"></i></a>
+                    <a id="variable-navbar-btn" href="signInPage.php">Sign In      <i class="fa fa-user-circle-o"></i></a>
                     <a id="logout-btn" style="display:none;">Logout</a>
                     <?php
                     if(isset($_SESSION['user_email'])){
@@ -45,8 +46,8 @@ session_start();
         </div>
         <!--NavBar End-->
 
-        <div class="div1" style="margin-top:100px;">
-            <h2 style= "font-size: xx-large; ">Main Features of Grubhub - Food Ordering Software</h2>
+        <div class="div1">
+            <h2 style= "font-size: xx-large; ">About Us</h2>
             <p style="font-size: small;"><em>Grubhub is the only solution which is built as a food ordering portal or marketplace, along with 
                 white label food ordering system for restaurant owners. We believe if we give best solution to
                 hospitality business owners, they will be able to take control of their own business.</em>
@@ -57,19 +58,13 @@ session_start();
                 <table>
                     <tr>
                         <td valign="top">
-                            <h2 style="font-size: xx-large">1. Take Away Ordering:</h2><br>
-                            <p style = "font-size: x-large;">The take away ordering is a win-win solution for restaurant owners and customers. Restaurant 
-                                owners get paid in advance, they save lot of time as they don't have to take manual orders over the 
-                                phone which can even cause errors and confusion. Customers don't have to wait for the restaurant 
-                                to answer the phone or ask the pickup time. They can simply go on to the website, see the menu, 
-                                and place the order for the time they'd like to pick their food. This solution has helped restuarant 
-                                owners increase their sales as they don't miss a single order when the phone is occupied during 
-                                busy hours.</p>
+                            
+                            <p style = "font-size: x-large;">Since our modest beginnings in 2019 with a little space in Mumbai’s stylish Dadar locale, Grubhubs‘s development has been enlivened with the energy to cook and serve solid, Indian-roused takeout food. In contrast to other Indian eateries, Grubhub was made with the explicit expectation to appear as something else. We realize numerous individuals love Indian sustenance, yet a large number of them loathe or are unconscious of the regularly unfortunate fixings that make run of the mill Indian nourishment taste so great. Our menu highlights things that utilization the sound and fragrant flavors, however forgets the stuffing ghee, spread, oil, and overwhelming cream.
+
+                            </p>
                         </td>
 
-                        <td>
-                            <img src="../resources/delivery.jpg" style="height: 65vh; border-radius: 5px;box-shadow: gray 2px 2px 2px 2px;">                            
-                        </td>
+                        
                     </tr>
                 </table>
         </section>
@@ -77,18 +72,9 @@ session_start();
         <section class="section1">
             <table>
                 <tr>
-                    <td>
-                        <img src="../resources/catering.jpg" style="height: 50vh; border-radius: 5px; box-shadow: 5px 0 5px -5px #333;">  
-                    </td>
 
                     <td>
-                        <h2 style="font-size: xx-large; margin-left: 2%;margin-right:2%;">2. Catering Orders:</h2><br>
-                        <p style = "font-size: x-large; margin-left:2%;margin-right:2%;">Many restaurant owners provide catering or party orders at a 
-                        discounted rate. Somehow, they don't have any tool to showcase This
-                        to potential customers. Grubhub Catering ordering system
-                        allows them to publish a separate meny for discounted pricing for
-                        bulk orders. Example of catering orders is Meal for 20 people, 
-                        including 1 Starter, 1 main course and 1 dessert at {Price}.</p>                          
+                        <p style = "font-size: x-large;">Grubhub has developed to incorporate four superb takeout areas in Mumbai with additional to come sooner rather than later. Our group takes pride in the way that we can furnish our new and faithful clients with extraordinary tasting Indian-roused nourishment that is not normal for that at some other Indian eatery you visit. We perceive that a few people are as yet searching for the run of the mill Indian nourishment, and that is fine with us.</p>                          
                     </td>
                 </tr>
             </table>
@@ -98,19 +84,12 @@ session_start();
             <table>
                 <tr>
                     <td valign="center">
-                        <h2 style="font-size: xx-large;margin-right:2%;">3. Unique Webpage:</h2><br>
-                        <p style = "font-size: x-large;margin-right: 2%;">Why spend thousands of dollars in building a website, when you get a
-                        unique webpage on Grubhub Food Ordering Portal with ZERO 
-                        advertisements. Showcase your menu, items, gallery, amenities.
-                        You even get online table reservation service and online ordering solution for your 
-                        customers. With the unique webpage, your customers can contact you directly.</p>
+                        <p style = "font-size: x-large">Our disclaimer is that on the off chance that you’re anticipating overwhelming, slick, undesirable Indian nourishment, Grubhub isn’t the place for you. Our expectation is that you’ll join the developing pattern that such a large number of others have officially found and you will attempt Grubhub as a remarkable option to other Indian eateries as well as to all other solid sustenance alternatives out there!</p>
                     </td>
 
-                    <td>
-                        <img src="../resources/website.png" style="height: 50vh; border-radius: 5px; box-shadow: gray 2px 2px 2px 2px;">                            
-                    </td>
                 </tr>
             </table>
-    </section>
+        </section>
+        <section class="section1" style="font-size: 20px;"><center><a href="feedback.php">Give Feedback</a></center></section>
     </body>
 </html>

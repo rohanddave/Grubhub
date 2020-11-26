@@ -17,6 +17,10 @@ session_start();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <title>Cart</title>
+        <link rel="stylesheet" href='../css/new_cart.css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>            
             button{
                 color:blue;
@@ -37,14 +41,16 @@ session_start();
                 </li>
 
                 <li class="right-align-list-item">
-                    <a href="#">About   <i class="fa fa-universal-access"></i></a>
+                    <a href="aboutus.php">About   <i class="fa fa-universal-access"></i></a>
                     <a href="features.php">Features     <i class="fa fa-certificate"></i></i></a>
-                    <a href="cart.php">Cart     <i stlye="margin-left:5px;" class='fas fa-shopping-cart'></i></a>
+                    <a href="html/cart.php">Cart     <i stlye="margin-left:5px;" class='fas fa-shopping-cart'></i></a>
                     <a id="variable-navbar-btn" href="signInPage.php">Sign In      <i class="fa fa-user-circle-o"></i></a>
+                    <a id="logout-btn" style="display:none;">Logout</a>
                     <?php
                     if(isset($_SESSION['user_email'])){
                         $name = $_SESSION['fname'];
-                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name, Log Out?';document.getElementById('variable-navbar-btn').href='../php/logout.php';</script>";
+                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name';document.getElementById('variable-navbar-btn').href='#';</script>";
+                        echo "<script>document.getElementById('logout-btn').style.display='inline-block';document.getElementById('logout-btn').innerHTML = 'Logout';document.getElementById('logout-btn').href='../php/logout.php';</script>";
                         }
                     ?>
                 </li>
@@ -52,99 +58,109 @@ session_start();
         </div>
         <!--NavBar End-->
 
-        <?php
+        <div id="main">
+            <div id="page-wrap">
+                <h1>Choose a Delivery Address </h1>
+                <p style='margin-left:2.5%;margin-top:0.5%;'>Multiple addresses in this location</p>
+                
+                <?php
+                    $servername = "localhost";
+                    $username = "root";
+                    $password = "";
+                    $dbName = "ip_project";
 
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbName = "ip_project";
+                    $conn = mysqli_connect($servername,$username,$password,$dbName) or die("Unable to connect!");
+                    $email = $_SESSION['user_email'];
+                    $res = mysqli_query($conn,"select line1,line2,line3,name from addresses where email like '$email'");
+                    $addresses = array();
+                    while($row = mysqli_fetch_assoc($res)){
+                        $addresses[] = $row;
+                    }
 
-        $conn = mysqli_connect($servername,$username,$password,$dbName) or die("Unable to connect!");
-        
-        $email = $_SESSION['user_email'];
-        $result = mysqli_query($conn,"select item_name,quantity from cart where email like '$email';"); //item name is without space here
-        $arr = array(); //items in cart
-        while($row = mysqli_fetch_assoc($result)){
-        $arr[]=$row;
-        }
+                    $number_of_addresses = sizeof($addresses);
+                    $number_of_sections = ceil($number_of_addresses/2);
 
-        $query = mysqli_query($conn,"select name,price,kind from items"); //name is with space here
-        $pricings = array();
-        while($row = mysqli_fetch_assoc($query)){
-        $pricings[]=$row;//pricings of all items
-        }
+                    $pointer = 0;
 
-        $final_pricings = array(); //dictionary of prices
-
-        foreach($pricings as $pricing){
-            $final_pricings[$pricing['name']] = $pricing['price'];
-        }
-
-        /*$query = mysqli_query($conn,"select name,kind,img from items"); //name is with space here
-        $kinds = array();
-        while($row = mysqli_fetch_assoc($query)){
-            $kinds[]=$row;//pricings of all items
-        }
-
-        $final_kinds = array(); //dictionary of kinds
-
-        foreach($kinds as $kind){
-            $final_kinds[$kind['name']] = $kind['kind'];
-        }*/
-
-        $query = mysqli_query($conn,"select name,img from items"); //name is with space here
-        $imgs = array();
-        while($row = mysqli_fetch_assoc($query)){
-            $imgs[]=$row;//pricings of all items
-        }
-
-        $final_imgs = array(); //dictionary of kinds
-
-        foreach($imgs as $img){
-            $final_imgs[$img['name']] = $img['img'];
-        }
-
-        $total = 0;
-        if($arr){
-            echo "<h1>Cart</h1>";
-            foreach($arr as $item){
-                $item_name = $item['item_name'];
-                $img_location = $final_imgs[$item_name];
-                $item_qty = $item['quantity'];
-                $item_price = $final_pricings[$item_name];
-                $item_total = $item_qty*$item_price;
-                //$item_kind = $final_kinds[$item_name];
-                //$item_kind = str_replace(" ","_",$item_kind);
-                $total += $item_total;
-                echo "<form method='POST' action='../php/deleteFromCart.php'>
-                <section class = 'item-section' style='width:90%;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3); '>
-                <div class='img-div' style='width: 100px; float:left; height:100px;margin:10px'>
-                    <img style='width:100px;height:15vh;'src = '$img_location'>
-                </div>
-                <div style='display:inline-block;width: fit; float:left; height:100px;margin:10px'>
-                    <h3 style='padding-bottom:1%;'>$item_name (x$item_qty) &nbsp; ₹$item_total ($item_qty x ₹$item_price)</h3>
-                    <p style='color:green;padding-bottom:1%;'>Available</p>
-                    <p style='padding-bottom:1%;'>Free Delivery</p>
-                    <button style='background:transparent;border:none;'type='submit'>Delete</button>
-                    <input type = 'hidden' name = 'item_name' value = '$item_name'/>
-                </div>
-                </section>
-                </form>
-                ";
-            }
-        }
-        else{
-            echo "
-            <div>
-            <h1 style='margin-left:45%; margin-top:15%;'>Empty Cart</h1>
-            <a style='margin-left:49%; margin-top:20%;' href='home.php'>Order Now</a>
+                    for($x = 1; $x <= $number_of_sections; $x++){
+                        echo "<section height:auto;width:100%;>";
+                        for($y = 0 ; $y < 2 && $pointer < $number_of_addresses; $y++){
+                            $name = $addresses[$pointer]['name'];
+                            $line1 = $addresses[$pointer]['line1'];
+                            $line2 = $addresses[$pointer]['line2'];
+                            $line3 = $addresses[$pointer]['line3'];
+                            $pointer++;
+                            echo"
+                            <div id='address' style='width:45%;margin-left:2.5%;margin-right:2%;float:left;'>
+                                <form method='POST' action='../php'>
+                                    <h3 style='margin-left:2%;margin-top:2%;'><i class='fa fa-home' style='margin-right:2%;'></i>$name</h3>
+                                    <p style='margin-left:2%;margin-top:2%;'>$line1</p>
+                                    <p style='margin-left:2%;'>$line2 </p>
+                                    <p style='margin-left:2%;'>$line3</p>
+                                    <button type='submit' style='width:25%;height:5vh;margin-left:37.5%;margin-top:2%;margin-bottom:2%;background-color:green;color:white;border:none;text-decoration:none;'>Deliver Here</button>
+                                </form> 
+                            </div>";
+                        }//inner for 
+                    }//outer for
+                ?>
             </div>
 
-            ";
-        }
-        
-        
-        $conn->close();
-        ?>
+            <div id="sidebar" style='overflow-y:auto;'>
+            
+            <div style='margin-left:5%;margin-top:5%;'>
+                <h2>Cart<i class="fa fa-shopping-cart" style="font-size:24px;"></i></h2>
+            </div>
+            
+                <?php
+                    $total = 0 ;
+                    $result = mysqli_query($conn,"select item_name,quantity,kind from cart where email like '$email';"); //item name is without space here
+                    $cart_items = array(); //items in cart
+                    while($row = mysqli_fetch_assoc($result)){
+                    $cart_items[]=$row;
+                    }
+
+                    $query = mysqli_query($conn,"select name,price,kind from items"); //name is with space here
+                    $pricings = array();
+                    while($row = mysqli_fetch_assoc($query)){
+                    $pricings[]=$row;//pricings of all items
+                    }
+
+                    $final_pricings = array(); //dictionary of prices
+
+                    foreach($pricings as $pricing){
+                        $final_pricings[$pricing['name']] = $pricing['price']; // [name with spaces : price ]
+                    }
+
+                    for($x = 0 ; $x < sizeof($cart_items);  $x++){
+                        $name = $cart_items[$x]['item_name'];
+                        $name_without_spaces = str_replace(" ","_",$name);
+                        $name_without_spaces = strtolower($name_without_spaces);
+                        $kind = $cart_items[$x]['kind'];
+                        $kind=str_replace(" ","_",$kind);
+                        $quantity = $cart_items[$x]['quantity'];
+                        $price = $final_pricings[$name];  
+                        $total+=$price*$quantity;  
+                        echo "
+                        <div>
+                            <form method='POST' action='../php/deleteFromCart.php'>
+                                <div style='width:20%;margin-left:5%;margin-top:5%;height:10vh;float:left;'>
+                                    <img src='../resources/Menu/$kind/$name_without_spaces.jpg' style='width:100%;height:10vh;'>
+                                </div>   
+
+                                <div style='margin-top:5%;margin-left:5%;width:60%;height:10vh;float:left;'>
+                                    <h4>$name ($quantity x ₹$price)</h4>
+                                    <h4 style='color:green'>Available</h4>
+                                    <input type = 'hidden' name = 'item_name' value = '$name'/>
+                                    <button type='submit' style='background:none;border:none;'>Delete</button>
+                                </div>     
+                            </form>
+                        </div>";
+                    }//for 
+
+                    echo "
+                        <h3 style='margin-left:35%;'>Total: ₹$total</h3>";
+                ?>
+            </div>
+        </div>
     </body>
-</html>
+<html>

@@ -11,12 +11,13 @@ $lname = $_POST['lastName'];
 $user_email= $_POST['user_email'];
 $pass = $_POST['pass'];
 
-$stmt = $conn->prepare("insert into users values (?,?,?,?)");
-$stmt->bind_param("ssss",$user_email,$fname,$lname,$pass);
-$stmt->execute() or die("FUCN TOU");
+    $stmt = $conn->prepare("insert into users values (?,?,?,?)");
+    $stmt->bind_param("ssss",$user_email,$fname,$lname,$pass);
+    $stmt->execute() or die("Error");
 
-echo "<script>window.open('../html/signInPage.php','_self');alert('Account created please login in!');</script>";
+    echo "<script>window.open('../html/signInPage.php','_self');alert('Account created please login in!');</script>";
 
-$stmt->close();
-$conn->close();
+    $stmt->close();
+    $conn->close();
+
 ?>

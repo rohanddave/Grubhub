@@ -9,8 +9,10 @@ $dbName = "ip_project";
 $conn = mysqli_connect($servername,$username,$password,$dbName) or die("Unable to connect!");
 
 $user = $_SESSION['user_email'];
-$items = $_POST['items'];
-$number_of_items = count($items);
+$item = $_POST['item-name'];
+print_r($item);
+//$items = $_POST['items'];
+//$number_of_items = count($items);
 
 $query = mysqli_query($conn,"select name,kind from items"); //name is with space here
 $kinds = array();
@@ -25,18 +27,17 @@ foreach($kinds as $kind){
 }
 
 
-foreach($items as $item){
+//foreach($items as $item){
     //inserting everything without space
     $qty_input_name = 'qty_'.$item;
     $qty = $_POST[$qty_input_name];
     $item = str_replace("-"," ",$item);
     $item_kind = $final_kinds[$item];
-    print_r($item_kind);
     $stmt = $conn->prepare("insert into cart values (?,?,?,?)");
     $stmt->bind_param("ssss",$user,$item,$qty,$item_kind);
     $stmt->execute() or die("FUCN TOU");
-}
+//}
 $stmt->close();
-echo "<script>window.open('../html/cart.php','_self');</script>";
+echo "<script>window.open('../html/home.php','_self');</script>";
 $conn->close();
 ?>

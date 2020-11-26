@@ -32,29 +32,51 @@ function addItemToCart(){
 
     <body>
         <!--NavBar Begining-->
-        <div class="nav-bar-div">
+        <div clas="nav-bar-div">
             <ul class="nav-bar-list">
                 <li class="left-align-list-item">
                     <a href="../index.php">Grubhub</a>
                 </li>
 
                 <li class="right-align-list-item">
-                    <a href="#">About   <i class="fa fa-universal-access"></i></a>
+                    <a href="aboutus.php">About   <i class="fa fa-universal-access"></i></a>
                     <a href="features.php">Features     <i class="fa fa-certificate"></i></i></a>
                     <a href="cart.php">Cart     <i stlye="margin-left:5px;" class='fas fa-shopping-cart'></i></a>
                     <a id="variable-navbar-btn" href="signInPage.php">Sign In      <i class="fa fa-user-circle-o"></i></a>
+                    <a id="logout-btn" style="display:none;">Logout</a>
                     <?php
                     if(isset($_SESSION['user_email'])){
                         $name = $_SESSION['fname'];
-                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name, Log Out?';document.getElementById('variable-navbar-btn').href='../php/logout.php';</script>";
+                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name';document.getElementById('variable-navbar-btn').href='#';</script>";
+                        echo "<script>document.getElementById('logout-btn').style.display='inline-block';document.getElementById('logout-btn').innerHTML = 'Logout';document.getElementById('logout-btn').href='../php/logout.php';</script>";
                         }
                     ?>
                 </li>
             </ul>
         </div>
         <!--NavBar End-->
+        <div style='margin-top:2%;'>
+        <form method='POST' action='../php/search.php'>
+                <select name='searchBy' style='width:100px;height:5.5vh;margin-left:20%;'>
+                    <option value='name'>Name</option>
+                    <option value='cuisine'>Cuisine</option>
+                    <option value='kind'>Kind</option>
+                </select>
+                    <input name='search-item' placeholder='Search' style='width:300px;height:5vh;'>
 
-
+                    <select name='sortBy' style='height:5.5vh;'>
+                        <option value=''>Sort By</option>
+                        <option value='rating'>Rating</option>
+                        <option value='time_to_deliver'>Time To Deliver</option>
+                        <option value='price'>Price</option>
+                    </select>
+                    <select name='asc/desc' style='width:200px;height:5.5vh;'>
+                        <option value='asc'>Lowest to Highest</option>
+                        <option value='desc'>Highest to Lowest</option>
+                    </select>
+                    <button type='submit' style='width:100px;height:5.5vh;'>Search Now</button>
+            </form>
+            </div>
         <?php
         $servername = "localhost";
         $username = "root";
@@ -63,7 +85,13 @@ function addItemToCart(){
         
         $conn = mysqli_connect($servername,$username,$password,$dbName) or die("Unable to connect!");
         
-        if($_SESSION['showSearchRes']){
+        $res = mysqli_query($conn,"select item_name from cart");
+        $cart_items = array();
+        while($row = mysqli_fetch_assoc($res)){
+            $cart_items[] = $row;
+        }
+
+        if(isset($_SESSION['showSearchRes'])){
             $arr = $_SESSION['searchRes'];
             $_SESSION['showSearchRes'] = false;
         }
@@ -75,17 +103,15 @@ function addItemToCart(){
                 $arr[]=$row;
             }
         }
-        
 
         $number_of_items = sizeof($arr);
-        $number_of_sections = ceil($number_of_items/3);
+        $number_of_sections = ceil($number_of_items/4);
         
         $pointer = 0;
         
-        echo "<form method='POST' action = '../php/addToCart.php'> ";
         for($x = 1; $x <= $number_of_sections; $x++){
-            echo "<section class='item-section' style='float:left;width:75%;margin-top:100px;'>";
-            for($y = 0; $y < 3 && $pointer < $number_of_items; $y++){
+            echo "<section class='item-section' style='float:left;width:100%;margin-top:20px;'>";
+            for($y = 0; $y < 4 && $pointer < $number_of_items; $y++){
                 $img = $arr[$pointer]['img'];
                 $price = $arr[$pointer]['price'];
                 $time_to_deliver = $arr[$pointer]['time_to_deliver'];
@@ -97,6 +123,7 @@ function addItemToCart(){
                 $description = $arr[$pointer]['description'];
                 $pointer++;
                 echo "
+                <form method='POST' action='../php/addToCart.php'>
                 <div class='item' id='$name'>
                 <img src=$img>
                 <h3 id='name-of-item'>$name</h3>
@@ -105,11 +132,12 @@ function addItemToCart(){
                 <p>$description</p>
                 <ul>
                     <li style='text-align:center;margin-left: 0;'><div style='background: #08E25F;color:white;height:25px;width:40px;padding-top:6px;'>$rating    <span style='color:white;'class='fa fa-star checked'></span></div></li>
-                    <li><div><i style='margin-right:5px;font-size:8px;'class='fa fa-circle'></i>$time_to_deliver</div></li>
-                    <li id='price'><div><i style='margin-right:5px;font-size:8px;'class='fa fa-circle'></i>₹$price</div></li>
+                    <li style='color:black;'><div><i style='margin-right:5px;font-size:8px;'class='fa fa-circle'></i><b>$time_to_deliver</b></div></li>
+                    <li id='price' style='color:black;'><div><i style='margin-right:5px;font-size:8px;'class='fa fa-circle'></i><b>₹$price</b></div></li>
                 </ul>
                 <ul>
-                    <li style='margin-left:30%'>
+                    <li style='margin-left:30%' id='qty-li'>
+                    <label>Quantity</label>
                     <select name='qty_$name_without_spaces'>
                                 <option value='1'>1</option>
                                 <option value='2'>2</option>
@@ -122,43 +150,15 @@ function addItemToCart(){
                                 <option value='9'>9</option>
                                 <option value='10'>10</option>
                     </select>
-                    <input style='margin:0;' type='checkbox' name='items[]' id='items' value='$name_without_spaces'>
+                    <button type='submit' onclick='addToCartClick($name_without_spaces)' id='$name_without_spaces-addToCartButton' class='addToCartButton'>Add to cart</button>
+                    <input hidden name='item-name' value='$name_without_spaces'>
                     </li>
                 </ul>
-            </div>";
+            </div>
+            </form>";
             }//inner for
             echo "</section>";
         }//outer for
-        echo "<div class='sidebar' style='height: 50%;width:27%;float:left;position: fixed;z-index: 1;top: 200px;right: 10px;overflow-x: hidden;border-style: solid;border-color: rgb(197, 197, 197);box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.3);'>
-                <button id='addToCartBtn' style='margin:0 0 0 25%;background:transparent;border:none;'type = 'submit'>Add Items To Cart</button>
-            </form>
-
-            <form method='POST' action='../php/search.php'>
-                <fieldset>
-                    <legend>Search</legend>
-                    <label>Search By:</label>
-                    <select name='searchBy'>
-                        <option value='name'>Name</option>
-                        <option value='cuisine'>Cuisine</option>
-                        <option value='kind'>Kind</option>
-                    </select>
-                    <input name='search-item'>
-
-                    <label>Sort By:</label>
-                    <select name='sortBy'>
-                        <option value=''></option>
-                        <option value='rating'>Rating</option>
-                        <option value='time_to_deliver'>Time To Deliver</option>
-                        <option value='price'>Price</option>
-                    </select>
-                    <select name='asc/desc'>
-                        <option value='asc'>Lowest to Highest</option>
-                        <option value='desc'>Highest to Lowest</option>
-                    </select>
-                    <button type='submit'>Search Now</button>
-                </fieldset>
-            </form>
-            </div>";
         ?>        
     </body>
 </html>
