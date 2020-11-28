@@ -55,3 +55,45 @@ function getCity(coordinates) {
         } 
     } 
 }  
+
+var addresses = document.getElementsByClassName('address-boxes');
+
+function showPayment(elem){
+    var parent_div = elem.parentNode;
+    parent_div.style.borderColor='green'; 
+    for(var i = 0; i < addresses.length; i++){
+        if(addresses[i] != parent_div){
+            addresses[i].style.display = 'none';
+        }
+    }
+    var addresses_main_div = document.getElementById("page-wrap");
+    addresses_main_div.style.height = '220px';
+
+    var payment_div = document.getElementById('payment-div');
+    payment_div.style.display = 'block';
+}
+
+function showAddresses(){
+    document.getElementById('payment-div').style.display = 'none';
+    var addresses_main_div = document.getElementById("page-wrap");
+    addresses_main_div.style.height = '400px';
+    for(var i = 0; i < addresses.length; i++){
+        addresses[i].style.borderColor = '#d9d9d9';
+        addresses[i].style.display = 'block';
+    }
+}
+
+function showDetails(elem){
+    var buttons = document.getElementsByClassName('payment-buttons');
+    for(var i = 0; i < buttons.length; i++){
+        buttons[i].style.color = 'gray';
+    }
+    elem.style.color='black';
+    var div_name = elem.value;
+    var elements = document.getElementsByClassName('payment-option');
+    for(var i = 0; i < elements.length; i++){
+        elements[i].style.display = 'none';
+    }
+    var element = document.getElementById(div_name);
+    element.style.display = 'block';
+}

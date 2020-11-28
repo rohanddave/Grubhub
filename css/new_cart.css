@@ -2,6 +2,14 @@
     width: 100%;
     margin: 0 auto;
 }
+button{
+    background:none;
+    border:none;
+    text-decoration: none;
+}
+button:hover{
+    text-decoration:none;
+}
 #page-wrap  {
     width: 60%;
     /*background: blue;*/
@@ -16,7 +24,6 @@
 #sidebar    {
     width: 30%;
     height: 400px;
-    /*background: red;*/
     margin-left: 5%;
     float: left;
     margin-top:2.5%;
@@ -39,3 +46,39 @@
     transition: 0.3s;
 }
 
+.payment-buttons{
+    width: 90%;
+    padding:20px;
+    display:block;
+    background:white;
+    border:none;
+    margin-left:2.5%;
+    margin-top:4%;
+    text-decoration: none;
+    color:gray;
+    outline: none;
+}
+
+.payment-buttons:hover{
+    text-decoration:none;
+    color:black !important;
+}
+
+#payment-div{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.5);
+    transition: 0.3s;
+}
+
+.payment-details{
+    margin-top: 5%;
+    margin-left:5%;
+    width:65%;
+    height:80vh;
+    float:left;
+}
+
+.payment-option{
+    width: 97.5%;
+    height:30%;
+    border:solid #d9d9d9 1px;
+}
