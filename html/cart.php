@@ -129,11 +129,13 @@ session_start();
                     </div>
 
                     <div class='payment-details'>
+                    <form method='POST' action='../php/makePayment.php'>
                         <div id='wallet'class = 'payment-option' style='display:none;'>
                             <img src='https://www.pathforward.org/wp-content/uploads/2019/10/amazon-pay-logo-e1570817376969-1024x315.jpg' style='margin-left:5%;margin-top:2%;width:100px;height:50px;'>
                             <h4 style='margin-left:5%;'>Amazon Pay</h4>
                             <button style='background-color:green;color:white;width:25%;padding:8px;margin-left:5%;margin-top:2.5%;'>Pay</button>
                         </div>
+                    </form>
 
                         <div id='food-card'class = 'payment-option' style='display:none;height:400px;'>
                             <input placeholder='Card number' style='margin-left:20%;margin-top:10%;padding:0;width:150px;height:50px;border:solid 1px #d9d9d9;display:block;'>
