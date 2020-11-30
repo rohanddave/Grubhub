@@ -19,8 +19,12 @@ foreach($cart_items as $cart_item){
     $quantity = $cart_item['quantity'];
     $kind = $cart_item['kind'];     
     $t =time();
-    $stmt = $conn->prepare("insert into previous_orders values (?,?,?,?,?)");
-    $stmt->bind_param("sssss",$user,$item_name,$quantity,$kind,$t);
+    $_SESSION['orderId'] = $t;
+    $isDelivered = 0;
+    $number_of_items = sizeof($cart_items);
+    
+    $stmt = $conn->prepare("insert into previous_order values (?,?,?,?,?,?,?)");
+    $stmt->bind_param("sssssss",$user,$item_name,$quantity,$kind,$t,$isDelivered,$number_of_items);
     $stmt->execute() or die("insertion failed");
     $stmt->close();
 }
@@ -30,5 +34,5 @@ $stmt->bind_param("s",$user);
 $stmt->execute() or die("deletion failed");
 $stmt->close();
 $conn->close();
-//echo "<script>window.open('../index.php','_self');</script>";
+echo "<script>window.open('../html/orderConfirmed.php','_self');</script>";
 ?>

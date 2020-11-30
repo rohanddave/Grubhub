@@ -38,5 +38,51 @@ session_start();
             </ul>
         </div>
         <!--NavBar End-->
+
+        <div>
+            <?php
+                $servername = "localhost";
+                $username = "root";
+                $password = "";
+                $dbName = "ip_project";
+
+                $conn = mysqli_connect($servername,$username,$password,$dbName) or die("Unable to connect!");
+                $email = $_SESSION['user_email'];
+
+                $res = mysqli_query($conn,"select item_name,quantity,orderID,number_of_items from previous_order where email like '$email' order by orderID desc;");
+                $previous_orders = array();
+
+                while($row = mysqli_fetch_assoc($res)){
+                    $previous_orders[] = $row;
+                }
+
+                $arr = array();
+                for($i = 0; $i < sizeof($previous_orders);){
+                    $number_of_items = $previous_orders[$i]['number_of_items'];
+                    for($j = 0; $j < $number_of_items && $i < sizeof($previous_orders) ; $j++){
+                        $item_name = $previous_orders[$i+$j]['item_name'];
+                        $quantity = $previous_orders[$i+$j]['quantity'];
+                        $orderID = $previous_orders[$i+$j]['orderID'];
+                        $arr[$orderID][$j]= array($item_name,$quantity);
+                    }//inner for 
+                    $i+=$number_of_items;
+                }//outer for
+                
+                //print_r($arr);
+
+                foreach($arr as $order){
+                    echo "<div style='background-color:red;margin-top:10%;>";
+                    echo "<div style='background-color:blue;>";
+                    for($x = 0; $x < sizeof($order); $x++){
+
+                        $item_name = $order[$x][0];
+                        $quantity = $order[$x][1];
+                        
+                        echo "<h2>$item_name x $quantity</h2>";
+                    }
+                    echo "</div>";
+                }
+            ?>
+        </div>
     </body>
 </html>

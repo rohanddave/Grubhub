@@ -170,7 +170,14 @@ session_start();
                     $cart_items[]=$row;
                     }
 
-                    $query = mysqli_query($conn,"select name,price,kind from items"); //name is with space here
+                    if(sizeof($cart_items) == 0){
+                        echo"
+                            <h2 style= 'margin-left:30%;margin-top:15%;'>Empty Cart</h2>
+                            <a href='home.php' style= 'margin-left:37.5%;margin-top:15%;'> Order Now</a>";
+                    }
+
+                    else{
+                        $query = mysqli_query($conn,"select name,price,kind from items"); //name is with space here
                     $pricings = array();
                     while($row = mysqli_fetch_assoc($query)){
                     $pricings[]=$row;//pricings of all items
@@ -210,6 +217,10 @@ session_start();
                     $_SESSION['total'] = $total;
                     echo "
                         <h3 style='margin-left:35%;'>Total: ₹$total</h3>";
+
+                    }
+
+                    
                 ?>
             </div> <!--side bar div -->
     </body>
