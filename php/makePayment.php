@@ -13,18 +13,23 @@ $cart_items = array(); //items in cart
 while($row = mysqli_fetch_assoc($result)){
     $cart_items[]=$row;
 }
+date_default_timezone_set('Asia/Kolkata');
+$date = date("Y-m-d");
+$time = date("h:i:sa");
 
 foreach($cart_items as $cart_item){
     $item_name = $cart_item['item_name'];
     $quantity = $cart_item['quantity'];
     $kind = $cart_item['kind'];     
-    $t =time();
+    $t = time();
+    
     $_SESSION['orderId'] = $t;
     $isDelivered = 0;
     $number_of_items = sizeof($cart_items);
+    $total = $_SESSION['total'];
     
-    $stmt = $conn->prepare("insert into previous_order values (?,?,?,?,?,?,?)");
-    $stmt->bind_param("sssssss",$user,$item_name,$quantity,$kind,$t,$isDelivered,$number_of_items);
+    $stmt = $conn->prepare("insert into previous_order values (?,?,?,?,?,?,?,?,?,?)");
+    $stmt->bind_param("ssssssssss",$user,$item_name,$quantity,$kind,$t,$isDelivered,$number_of_items,$total,$date,$time);
     $stmt->execute() or die("insertion failed");
     $stmt->close();
 }

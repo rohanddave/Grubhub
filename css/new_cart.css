@@ -13,7 +13,7 @@ button:hover{
 #page-wrap  {
     width: 60%;
     /*background: blue;*/
-    height: 400px;
+    height: 450px;
     float: left;
     margin-left: 2.5%;
     margin-top:2.5%;
@@ -23,7 +23,7 @@ button:hover{
 }
 #sidebar    {
     width: 30%;
-    height: 400px;
+    height: 450px;
     margin-left: 5%;
     float: left;
     margin-top:2.5%;

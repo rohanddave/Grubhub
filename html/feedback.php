@@ -50,7 +50,7 @@ function formvaildate()
                     <?php
                     if(isset($_SESSION['user_email'])){
                         $name = $_SESSION['fname'];
-                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name';document.getElementById('variable-navbar-btn').href='#';</script>";
+                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name';document.getElementById('variable-navbar-btn').href='user.php';</script>";
                         echo "<script>document.getElementById('logout-btn').style.display='inline-block';document.getElementById('logout-btn').innerHTML = 'Logout';document.getElementById('logout-btn').href='php/logout.php';</script>";
                         }
                     ?>

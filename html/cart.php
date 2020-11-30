@@ -10,6 +10,8 @@ session_start();
         <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
         <script src="../js/main.js"></script>
         <link rel="stylesheet" href="../css/cart.css">
+        <link href='https://fonts.googleapis.com/css?family=Amethysta' rel='stylesheet'>
+
 
         <script src='https://kit.fontawesome.com/a076d05399.js'></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,6 +24,9 @@ session_start();
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>            
+            body{
+                font-family:"Amethysta";
+            }
             button{
                 color:blue;
             }
@@ -49,7 +54,7 @@ session_start();
                     <?php
                     if(isset($_SESSION['user_email'])){
                         $name = $_SESSION['fname'];
-                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name';document.getElementById('variable-navbar-btn').href='#';</script>";
+                        echo "<script>document.getElementById('variable-navbar-btn').innerHTML = '$name';document.getElementById('variable-navbar-btn').href='user.php';</script>";
                         echo "<script>document.getElementById('logout-btn').style.display='inline-block';document.getElementById('logout-btn').innerHTML = 'Logout';document.getElementById('logout-btn').href='../php/logout.php';</script>";
                         }
                     ?>
