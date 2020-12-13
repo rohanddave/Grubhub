@@ -135,7 +135,7 @@ session_start();
 
                     <div class='payment-details'>
                     <form method='POST' action='../php/makePayment.php'>
-                        <div id='wallet'class = 'payment-option' style='display:none;'>
+                        <div id='wallet'class = 'payment-option' style='display:none;height:25vh;'>
                             <img src='https://www.pathforward.org/wp-content/uploads/2019/10/amazon-pay-logo-e1570817376969-1024x315.jpg' style='margin-left:5%;margin-top:2%;width:100px;height:50px;'>
                             <h4 style='margin-left:5%;'>Amazon Pay</h4>
                             <button style='background-color:green;color:white;width:25%;padding:8px;margin-left:5%;margin-top:2.5%;'>Pay</button>
@@ -183,9 +183,9 @@ session_start();
 
                     else{
                         $query = mysqli_query($conn,"select name,price,kind from items"); //name is with space here
-                    $pricings = array();
-                    while($row = mysqli_fetch_assoc($query)){
-                    $pricings[]=$row;//pricings of all items
+                        $pricings = array();
+                        while($row = mysqli_fetch_assoc($query)){
+                        $pricings[]=$row;//pricings of all items
                     }
 
                     $final_pricings = array(); //dictionary of prices
@@ -222,7 +222,6 @@ session_start();
                     $_SESSION['total'] = $total;
                     echo "
                         <h3 style='margin-left:35%;'>Total: ₹$total</h3>";
-
                     }
 
                     

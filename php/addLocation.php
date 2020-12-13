@@ -8,7 +8,12 @@ $dbName = "ip_project";
 
 $conn = mysqli_connect($servername,$username,$password,$dbName) or die("Unable to connect!");
 
-$user = $_SESSION['user_email'];
+if(isset($_SESSION['user_email'])){
+    $user = $_SESSION['user_email'];
+}
+else{
+    $user = 'guest@guest.com';
+}
 $name = $_POST['name'];
 $line1 = $_POST['line1'];
 $line2 = $_POST['line2'];
